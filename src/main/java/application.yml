@@ -1,0 +1,40 @@
+# Core Properties
+spring:
+  application:
+    name: FinanceApp
+  
+  # Database Configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/FinanceApp
+    username: root
+    password: root#12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  # JPA/Hibernate
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update 
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+ 
+  # Security
+  security:
+    user:
+      name: admin
+      password: adminpass
+      roles: ADMIN
+  
+  # Logging
+  logging:
+    level:
+      root: INFO
+      org.springframework.web: DEBUG
+      com.myapp: TRACE
+    file:
+      name: logs/app.log
+    pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  
