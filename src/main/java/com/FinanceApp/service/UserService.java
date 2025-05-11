@@ -22,13 +22,8 @@ public class UserService {
 		return userRepository.findByEmail(email);
 	}
 	
-	public void saveUser(HashMap<String, String> userDetails) throws Exception{
-		User newUser = new User();
-		for(Map.Entry<String, String> map: userDetails.entrySet()) {
-			PropertyDescriptor pd = new PropertyDescriptor(map.getKey(), newUser.getClass());
-			pd.getWriteMethod().invoke(newUser, map.getValue());
-		}
-		userRepository.save(newUser);
+	public void saveUser(User user) throws Exception{
+		userRepository.save(user);
 	}
 	
 	public void updateUserDetails(String email, HashMap<String, String> userDetails) throws Exception{
@@ -40,7 +35,9 @@ public class UserService {
 		userRepository.save(user);
 	}
 	
-	public void updateEmail(String oldEmail, String newEmail) {}
+	public void updateEmail(String oldEmail, String newEmail) {
+		userRepository.updateEmail(oldEmail, newEmail);
+	}
 	
 	public void updatePassword(String oldEmail, String newPassword) {}
 	
